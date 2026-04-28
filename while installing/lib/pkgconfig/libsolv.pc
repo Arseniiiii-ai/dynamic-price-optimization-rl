@@ -1,0 +1,8 @@
+libdir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib
+includedir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/include
+
+Name: libsolv
+Description: Library for solving packages
+Version: 0.7.30
+Libs: -L${libdir} -lsolv
+Cflags: -I${includedir}

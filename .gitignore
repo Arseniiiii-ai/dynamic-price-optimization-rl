@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.DS_Store
+data/raw/
+data/processed/
+*.ipynb_checkpoints
+.env
+archive/
+yes/
+Miniconda3-latest-MacOSX-arm64.sh

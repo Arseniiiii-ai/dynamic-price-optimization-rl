@@ -1,0 +1,11 @@
+prefix=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: libidn2
+Description: Library implementing IDNA2008 and TR46
+Version: 2.3.8
+Cflags: -I${includedir}
+Libs: -L${libdir} -lidn2
+Libs.private: -L/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib -liconv -R/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib -L/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib -lunistring -R/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib

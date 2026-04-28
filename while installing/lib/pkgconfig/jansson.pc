@@ -1,0 +1,10 @@
+prefix=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Jansson
+Description: Library for encoding, decoding and manipulating JSON data
+Version: 2.14
+Libs: -L${libdir} -ljansson
+Cflags: -I${includedir}

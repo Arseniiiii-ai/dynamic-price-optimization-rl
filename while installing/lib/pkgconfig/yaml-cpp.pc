@@ -1,0 +1,11 @@
+prefix=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes
+exec_prefix=${prefix}
+includedir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/include
+libdir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib
+
+Name: Yaml-cpp
+Description: A YAML parser and emitter for C++
+Version: 0.8.0
+Requires:
+Libs: -L${libdir} -lyaml-cpp
+Cflags: -I${includedir}

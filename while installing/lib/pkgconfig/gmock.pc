@@ -1,0 +1,10 @@
+libdir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/lib
+includedir=/Users/lopmmnn/Desktop/Dynamic Price Optimization Engine with Reinforcement Learning/yes/include
+
+Name: gmock
+Description: GoogleMock (without main() function)
+Version: 1.11.0
+URL: https://github.com/google/googletest
+Requires: gtest = 1.11.0
+Libs: -L${libdir} -lgmock 
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1
