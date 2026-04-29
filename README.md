@@ -1,6 +1,6 @@
 # Dynamic Price Optimization Engine with Reinforcement Learning 🤖📈
 
-This repository contains an end-to-end Machine Learning system designed to optimize e-commerce product pricing dynamically. The project combines **XGBoost** for demand forecasting and **Reinforcement Learning (Q-Learning)** for autonomous decision-making.
+This repository contains an end-to-end Machine Learning system designed to optimize e-commerce product pricing dynamically. 
 
 ## 🚀 Overview
 The goal of this project is to move away from static pricing and manual rule-based adjustments. Instead, an AI agent learns to maximize **Net Profit** by analyzing historical sales data, seasonality, and price elasticity.
