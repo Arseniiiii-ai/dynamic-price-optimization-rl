@@ -39,6 +39,7 @@ The goal of this project is to move away from static pricing and manual rule-bas
 │   └── training_graph.png # Training progress visualization
 ├── .gitignore
 └── README.md
+```
 
 ## 📊 Result
 The agent successfully learns to identify optimal price points. During training, we observe a steady increase in cumulative reward as the agent transitions from exploration to exploitation.
