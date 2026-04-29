@@ -5,16 +5,21 @@ This repository contains an end-to-end Machine Learning system designed to optim
 ## 🚀 Overview
 The goal of this project is to move away from static pricing and manual rule-based adjustments. Instead, an AI agent learns to maximize **Net Profit** by analyzing historical sales data, seasonality, and price elasticity.
 
-### ✅ Key Strengths
-* **End-to-End Pipeline:** Integrates raw data processing, demand modeling, and RL optimization in a single modular workflow.
-* **Profit-Oriented Reward:** Unlike basic models that only chase revenue, this agent optimizes for **Net Profit** by incorporating Unit Economics (COGS).
-* **Modular Architecture:** Clean separation of concerns between the environment, the forecaster, and the agent logic.
-* **Model Persistence:** Includes built-in capabilities to save and load trained Q-tables for instant deployment.
+### ✅ Key Strengths (Phase 2 Upgrade)
+* **Deep Q-Learning (DQN):** Transitioned from tabular methods to neural network approximation using **PyTorch**.
+* **Experience Replay:** Implemented a replay buffer to stabilize training and break temporal data correlation.
+* **XGBoost Demand Forecaster:** High-precision base demand prediction with an average error of ~5.39 units.
+* **Profit-Oriented Reward:** The agent optimizes for **Net Profit** (Revenue - COGS), ensuring sustainable business logic.
+* **Advanced Visualization:** High-resolution training logs with Moving Average smoothing for trend analysis.
 
-### ⚠️ Current Scope & Limitations
-* **State Space:** Currently utilizes a focused feature set `[price, is_weekend, month]`.
-* **Methodology:** Employs tabular Q-Learning, which is ideal for understanding RL fundamentals before transitioning to Deep Learning.
-* **Environment:** Operates in a single-agent simulated market based on historical demand patterns.
+## ⚠️ Current Weaknesses & Limitations
+
+While the DQN agent outperforms static pricing, the current system has technical constraints that are being addressed in upcoming phases:
+
+* **Static Competitor Modeling:** The environment currently assumes a stable market. It does not yet account for "predatory pricing" or aggressive retaliatory moves from rival AI agents.
+* **Cold Start Problem:** The agent requires historical demand data from the XGBoost forecaster. It currently struggles to price entirely new products with zero sales history.
+* **Discrete Action Space:** The agent is limited to fixed percentage changes (e.g., -10%, 0, +10%). Moving to a continuous action space (PPO/DDPG) would allow for more granular optimization.
+* **Delayed Reward Signal:** Profit is calculated per transaction, but long-term Customer Lifetime Value (CLV) is not yet incorporated into the reward function.
 
 ## 🛠 Tech Stack
 * **Language:** Python 3.9+
@@ -43,6 +48,9 @@ The goal of this project is to move away from static pricing and manual rule-bas
 
 ## 📊 Result
 The agent successfully learns to identify optimal price points. During training, we observe a steady increase in cumulative reward as the agent transitions from exploration to exploitation.
+
+## 📊 Training Results
+In Phase 2, the agent demonstrates a significant ability to adapt to market fluctuations. By utilizing Experience Replay, we achieved a more stable learning curve compared to standard Q-learning. Model weights are saved in models/dqn_model.pth for immediate inference.
 
 ## ⚙️ How to Run
 1. **Clone the repository:**
@@ -73,11 +81,28 @@ The project is currently in its **MVP (Phase 1)**. I am actively working on the 
 - [x] Basic **Q-Learning** agent implementation.
 - [x] Unit economics-based reward function (Profit over Revenue).
 
-### 🟡 Phase 2: Deep Learning Upgrade (In Progress)
-- [ ] Transition from Q-Table to **Deep Q-Networks (DQN)** using **PyTorch**.
-- [ ] Implementation of **Experience Replay** to stabilize training graphs.
-- [ ] Hyperparameter tuning for the neural network architecture.
+### 🟢 Phase 2: Deep Learning (Completed)
 
-### 🔴 Phase 3: -
+- [x] Implementation of DQN architecture with PyTorch.
+- [x] Integration of Experience Replay buffer.
+- [x] Enhanced training visualization (300 DPI graphs).
+- [x] Model persistence (.pth saving/loading).
+
+### 🟡 Phase 3: Market Complexity (In Progress)
+
+[ ] Competitor Dynamics: Adding rival agents to the environment.
+[ ] Inventory Constraints: Stock-level aware pricing strategies.
+[ ] Multi-Agent Simulation: Competitive market scenarios.
 
 ### 🔵 Phase 4: -
+
+
+
+
+---
+| ⚡ Quick Bio | 🎯 Focus Area |
+| :--- | :--- |
+| **Name:** Arsen | Autonomous AI Agents |
+| **Uni:** Astana IT University | Neural Network Optimization |
+| **Major:** Big Data & ML | Reinforcement Learning |
+---
