@@ -53,10 +53,10 @@ In Phase 2, the agent demonstrates a significant ability to adapt to market fluc
 1. **Clone the repository:**
 git clone [https://github.com/Arseniiiii-ai/dynamic-price-optimization-rl.git](https://github.com/Arseniiiii-ai/dynamic-price-optimization-rl.git)
 
-2.**Install dependencies:**
+2. **Install dependencies:**
 pip install pandas numpy xgboost matplotlib
 
-3.**Run the training and inference:**
+3. **Run the training and inference:**
 python src/agent.py
 
 ## Roadmap
@@ -70,7 +70,7 @@ Developed by Arsen — Focused on High-Performance AI Solutions.
 
 ## 📈 Future Roadmap
 
-The project is currently in its **MVP (Phase 1)**. I am actively working on the following milestones to transition it from a laboratory experiment to a production-grade pricing engine:
+The project is currently in its **Phase 2 (DQN Implementation)**. I am actively working on the following milestones to transition it from a laboratory experiment to a production-grade pricing engine:
 
 ### 🟢 Phase 1: Foundation (Completed)
 - [x] Integration of historical e-commerce datasets.
