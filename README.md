@@ -43,10 +43,12 @@ While the DQN agent outperforms static pricing, the current system has technical
 └── README.md           # Project documentation
 ```
 
-## 📊 Result (Phase 1)
+## 📊 Result of each Phase~
+
+##  Phase 1
 The agent successfully learns to identify optimal price points. During training, we observe a steady increase in cumulative reward as the agent transitions from exploration to exploitation.
 
-## 📊 Result (Phase 2)
+##  Phase 2
 In Phase 2, the agent demonstrates a significant ability to adapt to market fluctuations. By utilizing Experience Replay, we achieved a more stable learning curve compared to standard Q-learning. Model weights are saved in models/dqn_model.pth for immediate inference.
 
 ## ⚙️ How to Run
