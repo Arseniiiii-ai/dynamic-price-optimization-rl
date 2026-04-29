@@ -68,8 +68,6 @@ python src/agent.py
 
 [ ] Phase 4: Build a Streamlit dashboard for business stakeholders.
 
-Developed by Arsen — Focused on High-Performance AI Solutions.
-
 ## 📈 Future Roadmap
 
 The project is currently in its **Phase 2 (DQN Implementation)**. I am actively working on the following milestones to transition it from a laboratory experiment to a production-grade pricing engine:
