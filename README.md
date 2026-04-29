@@ -90,13 +90,13 @@ The project is currently in its **MVP (Phase 1)**. I am actively working on the 
 
 ### 🟡 Phase 3: Market Complexity (In Progress)
 
-[ ] Competitor Dynamics: Adding rival agents to the environment.
-[ ] Inventory Constraints: Stock-level aware pricing strategies.
-[ ] Multi-Agent Simulation: Competitive market scenarios.
+- [ ] Competitor Dynamics: Adding rival agents to the environment.
+- [ ] Inventory Constraints: Stock-level aware pricing strategies.
+- [ ] Multi-Agent Simulation: Competitive market scenarios.
 
 ### 🔵 Phase 4: -
 
-
+Soon!
 
 
 ---
