@@ -102,12 +102,7 @@ The project is currently in its **MVP (Phase 1)**. I am actively working on the 
 ---
 ### 👤 About the Author
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Student-Astana%20IT%20University-blue?style=for-the-badge&logo=education&logoColor=white" />
-  <img src="https://img.shields.io/badge/Specialization-Big%20Data-orange?style=for-the-badge&logo=apache-spark&logoColor=white" />
-</p>
-
-**Arsen** *Building High-Performance AI Solutions & Autonomous Agents*
+**Arsen** *Building High-Performance AI Solutions & Data science*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/arsen-baktygaliyev-53474631a)
-[![Researchpapers](https://img.shields.io/badge/Portfolio-Explore-green?style=flat-square&logo=vercel)](https://t.me/build_ai_notes)
+[![Researchpapers](https://img.shields.io/badge/Researchpapers-Explore-green?style=flat-square&logo=vercel)](https://t.me/build_ai_notes)
