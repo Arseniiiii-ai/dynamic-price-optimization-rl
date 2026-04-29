@@ -30,20 +30,17 @@ While the DQN agent outperforms static pricing, the current system has technical
 
 ## 📁 Project Structure
 ```text
-├── data/
-│   └── raw/               # Olist E-commerce dataset
-├── models/
-│   └── q_table.pkl        # Saved "brain" of the trained agent
-├── src/
-│   ├── data_loader.py     # Data ingestion and merging
-│   ├── feature_eng.py     # Feature engineering & seasonality
-│   ├── demand_model.py    # XGBoost training & forecasting
-│   ├── environment.py     # Pricing simulation environment
-│   └── agent.py           # RL Agent training and logic (Main Entry)
-├── docs/
-│   └── training_graph.png # Training progress visualization
-├── .gitignore
-└── README.md
+├── data/               # Raw and processed e-commerce datasets
+├── models/             # Compiled model weights (.pth) for DQN
+├── src/                # Core source code
+│   ├── data_loader.py  # Data cleaning and ingestion pipeline
+│   ├── environment.py  # Custom RL market simulation environment
+│   ├── agent.py        # DQN Architecture & Experience Replay logic
+│   ├── demand_model.py # XGBoost demand forecasting engine
+│   └── feature_eng.py  # Seasonality and price elasticity engineering
+├── docs/               # Visual assets and training analytics
+├── .gitignore          # Environment and cache exclusion
+└── README.md           # Project documentation
 ```
 
 ## 📊 Result
