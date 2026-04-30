@@ -77,9 +77,9 @@ python train.py
 
 ## 📈 Future Roadmap
 
-## 📈 Current Status
-
 The project is currently in **Phase 4 (Intelligence Dashboard)**: I am actively working on the following milestones to transition the engine from a backend simulation into a live, interactive pricing tool.
+
+## 📈 Current Status
 
 ### 🟢 Phase 1: Foundation (Completed)
 - [x] Integration of historical e-commerce datasets.
