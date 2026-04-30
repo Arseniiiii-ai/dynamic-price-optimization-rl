@@ -5,21 +5,21 @@ This repository contains an end-to-end Machine Learning system designed to optim
 ## 🚀 Overview
 The goal of this project is to move away from static pricing and manual rule-based adjustments. Instead, an AI agent learns to maximize **Net Profit** by analyzing historical sales data, seasonality, and price elasticity.
 
-### ✅ Key Strengths (Phase 2 Upgrade)
-* **Deep Q-Learning (DQN):** Transitioned from tabular methods to neural network approximation using **PyTorch**.
-* **Experience Replay:** Implemented a replay buffer to stabilize training and break temporal data correlation.
-* **XGBoost Demand Forecaster:** High-precision base demand prediction with an average error of ~5.39 units.
-* **Profit-Oriented Reward:** The agent optimizes for **Net Profit** (Revenue - COGS), ensuring sustainable business logic.
-* **Advanced Visualization:** High-resolution training logs with Moving Average smoothing for trend analysis.
+### ✅ Key Strengths (Phase 3 Upgrade)
+
+With the completion of Phase 3, the engine now handles real-world market complexities that were previously missing:
+
+* **Multi-Agent Dynamics:** The agent no longer prices in a vacuum. It tracks a Responsive Competitor and learns to defend market share without triggering a race-to-bottom price war.
+* **Inventory Intelligence:** The environment now simulates Stock Depletion. The agent understands that inventory is a finite resource and will automatically raise prices to capture higher margins when supply is low.
+* **Enhanced State Space:** The neural network now processes a 5-dimensional state including [Current Price, Competitor Price, Inventory Level, Month, Weekend].
+* **Advanced Safety Logic:** Implemented "Stockout Penalties" to train the agent to value business continuity as much as immediate profit.
 
 ## ⚠️ Current Weaknesses & Limitations
 
-While the DQN agent outperforms static pricing, the current system has technical constraints that are being addressed in upcoming phases:
+While the agent is now a sophisticated merchant, we are addressing the final hurdles before production:
 
-* **Static Competitor Modeling:** The environment currently assumes a stable market. It does not yet account for "predatory pricing" or aggressive retaliatory moves from rival AI agents.
-* **Cold Start Problem:** The agent requires historical demand data from the XGBoost forecaster. It currently struggles to price entirely new products with zero sales history.
-* **Discrete Action Space:** The agent is limited to fixed percentage changes (e.g., -10%, 0, +10%). Moving to a continuous action space (PPO/DDPG) would allow for more granular optimization.
-* **Delayed Reward Signal:** Profit is calculated per transaction, but long-term Customer Lifetime Value (CLV) is not yet incorporated into the reward function.
+* **Continuous Action Space:** Moving from fixed percentage steps (e.g., ±10%) to a PPO (Proximal Policy Optimization) architecture for cent-perfect pricing.
+* **Stakeholder Accessibility:** Currently, the agent is controlled via terminal. Phase 4 will introduce a visual interface for non-technical users.
 
 ## 🛠 Tech Stack
 * **Language:** Python 3.9+
@@ -51,26 +51,35 @@ The agent successfully learns to identify optimal price points. During training,
 ##  Phase 2
 In Phase 2, the agent demonstrates a significant ability to adapt to market fluctuations. By utilizing Experience Replay, we achieved a more stable learning curve compared to standard Q-learning. Model weights are saved in models/dqn_model.pth for immediate inference.
 
+## Phase 3 
+The agent demonstrated a significant ability to adapt to Inventory Scarcity. During training, we observed the agent learning to "hold" price levels when rivals undercut too aggressively, prioritizing the preservation of limited stock for high-margin sales.
+
+**Latest Model:** Weights are saved in models/dqn_model.pth and training metrics are visualized in docs/training_graph.png.
+
 ## ⚙️ How to Run
 1. **Clone the repository:**
 git clone [https://github.com/Arseniiiii-ai/dynamic-price-optimization-rl.git](https://github.com/Arseniiiii-ai/dynamic-price-optimization-rl.git)
 
 2. **Install dependencies:**
-pip install pandas numpy xgboost matplotlib
+pip install pandas numpy xgboost matplotlib torch torchvision
 
 3. **Run the training and inference:**
-python src/agent.py
+python train.py
 
 ## Roadmap
-[ ] Phase 2: Implement Deep Q-Networks (DQN) using PyTorch for more complex state handling.
+[x] Phase 1: Foundation — XGBoost integration & Basic Q-Learning.
 
-[ ] Phase 3: Add competitor price tracking and inventory constraints.
+[x] Phase 2: Deep Learning — PyTorch DQN & Experience Replay.
 
-[ ] Phase 4: Build a Streamlit dashboard for business stakeholders.
+[x] Phase 3: Market Complexity — Competitor Dynamics & Inventory Constraints.
+
+[ ] Phase 4: Streamlit Dashboard — Real-time visualization and "What-If" scenario testing for business stakeholders.
 
 ## 📈 Future Roadmap
 
-The project is currently in its **Phase 2 (DQN Implementation)**. I am actively working on the following milestones to transition it from a laboratory experiment to a production-grade pricing engine:
+## 📈 Current Status
+
+The project is currently in **Phase 4 (Intelligence Dashboard)**: I am actively working on the following milestones to transition the engine from a backend simulation into a live, interactive pricing tool.
 
 ### 🟢 Phase 1: Foundation (Completed)
 - [x] Integration of historical e-commerce datasets.
@@ -85,16 +94,18 @@ The project is currently in its **Phase 2 (DQN Implementation)**. I am actively 
 - [x] Enhanced training visualization (300 DPI graphs).
 - [x] Model persistence (.pth saving/loading).
 
-### 🟡 Phase 3: Market Complexity (In Progress)
+### 🟢 Phase 3: Market Complexity (Completed)
 
-- [ ] Competitor Dynamics: Adding rival agents to the environment.
-- [ ] Inventory Constraints: Stock-level aware pricing strategies.
-- [ ] Multi-Agent Simulation: Competitive market scenarios.
+- [x] Competitor Dynamics: Adding rival agents to the environment.
+- [x] Inventory Constraints: Stock-level aware pricing strategies.
+- [x] Multi-Agent Simulation: Competitive market scenarios.
 
-### 🔵 Phase 4: -
+### 🟡 Phase 4: Intelligence Dashboard (In Progress)
 
-Soon!
-
+- [ ] Interactive Controls: Building a sidebar to adjust live inventory levels and competitor aggressiveness.
+- [ ] Real-Time Simulation: A "Play" button to watch the AI agent compete against the rival agent in a live visual loop.
+- [ ] Strategy Explainability: Visualizing the "Policy Map" to show at what stock levels the agent decides to trigger a price hike.
+- [ ] Performance Metrics: Real-time tracking of Total Profit, Revenue, and remaining Stock via Streamlit charts.
 
 ---
 ### 👤 About the Author
