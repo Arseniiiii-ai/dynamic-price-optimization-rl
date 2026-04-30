@@ -107,6 +107,19 @@ The project is currently in **Phase 4 (Intelligence Dashboard)**: I am actively 
 - [ ] Strategy Explainability: Visualizing the "Policy Map" to show at what stock levels the agent decides to trigger a price hike.
 - [ ] Performance Metrics: Real-time tracking of Total Profit, Revenue, and remaining Stock via Streamlit charts.
 
+### 🔵 Phase 5:  
+
+<details>
+  <summary>🔍 Click to see Phase 3 Technical Details</summary>
+
+  ### Deep Dive into the Brain
+  * **Architecture:** 3-layer MLP with ReLU activation.
+  * **Reward Function:** $R = (Price - COGS) \times Sales - StockoutPenalty$.
+  * **Optimization:** Adam optimizer with a learning rate of 0.001.
+
+</details>
+
+
 ---
 ### 👤 About the Author
 
@@ -114,3 +127,6 @@ The project is currently in **Phase 4 (Intelligence Dashboard)**: I am actively 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/arsen-baktygaliyev-53474631a)
 [![Researchpapers](https://img.shields.io/badge/Researchpapers-Explore-green?style=flat-square&logo=vercel)](https://t.me/build_ai_notes)
+
+
+
