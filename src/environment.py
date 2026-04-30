@@ -1,43 +1,48 @@
 import numpy as np
-import pandas as pd
 
-class PricingEnv:
-    def __init__(self, data, demand_model):
-        self.data = data
-        self.demand_model = demand_model
-        self.current_step = 0
-        self.categories = data['product_category_name'].unique()
-        
+class CompetitiveMarketEnv:
+    def __init__(self, cogs=50.0):
+        self.cogs = cogs
+        self.reset()
+
     def reset(self):
-        """Сброс окружения в начало (начало новой игровой сессии)."""
-        self.current_step = 0
-        return self._get_state()
+        self.our_price = 100.0
+        self.comp_price = 102.0 # Competitor starts near us
+        self.step_count = 0
+        self.inventory = 500.0 # Starting inventory
+        # Return state with 5 features
+        return np.array([self.our_price, self.comp_price, 5, 0, self.inventory], dtype=np.float32)
 
-    def _get_state(self):
-        """Возвращает текущую ситуацию на рынке (что видит ИИ)."""
-        row = self.data.iloc[self.current_step]
-        # Состояние: [Средняя цена, выходной ли сейчас, месяц]
-        return np.array([row['price'], row['is_weekend'], row['month']], dtype=float)
+    def step(self, action_idx):
+        # 1. Map Action (0: -5%, 1: 0%, 2: +5%)
+        multipliers = [0.95, 1.0, 1.05]
+        self.our_price *= multipliers[action_idx]
 
-    def step(self, action):
-        # Настройка цены
-        price_adjustment = {0: 0.9, 1: 1.0, 2: 1.1}
-        current_row = self.data.iloc[self.current_step]
-        new_price = current_row['price'] * price_adjustment[action]
-        
-        # Предсказание продаж
-        input_data = pd.DataFrame([[new_price, current_row['is_weekend'], current_row['month']]], 
-                                 columns=['price', 'is_weekend', 'month'])
-        predicted_sales = self.demand_model.predict(input_data)[0]
-        
-        # --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
-        # Предположим, себестоимость (закупка + логистика) — это 70% от оригинальной цены
-        cost_price = current_row['price'] * 0.7 
-        
-        # Награда теперь — это чистая ПРИБЫЛЬ
-        reward = (new_price - cost_price) * predicted_sales
-        # -----------------------
+        # 2. Competitor Logic (Heuristic: Undercluts us by 2%)
+        self.comp_price = max(self.our_price * 0.98, self.cogs * 1.05)
 
-        self.current_step += 1
-        done = self.current_step >= len(self.data) - 1
-        return self._get_state(), reward, done
+        # 3. Calculate Demand based on Relative Price
+        # If our_price < comp_price, demand increases significantly
+        price_ratio = self.comp_price / self.our_price
+        base_demand = 50 # Simplified for Phase 3
+        demand = base_demand * (price_ratio ** 1.2) 
+
+        # Limit demand to available inventory
+        actual_sales = min(demand, self.inventory)
+        self.inventory -= actual_sales
+
+        # 4. Profit Calculation
+        profit = (self.our_price - self.cogs) * actual_sales
+        
+        # Penalty for selling below cost
+        reward = profit if self.our_price > self.cogs else -200
+        
+        # Penalty for running out of stock
+        if self.inventory <= 0:
+            reward -= 100
+            
+        self.step_count += 1
+        done = self.step_count >= 30 or self.inventory <= 0
+        
+        next_state = np.array([self.our_price, self.comp_price, 5, 0, self.inventory], dtype=np.float32)
+        return next_state, reward, done, {}

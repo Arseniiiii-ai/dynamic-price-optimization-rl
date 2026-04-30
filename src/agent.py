@@ -26,7 +26,7 @@ class DQNetwork(nn.Module):
 
 # --- DEEP Q-LEARNING AGENT ---
 class DQNAgent:
-    def __init__(self, state_size=3, action_size=3):
+    def __init__(self, state_size=5, action_size=3):
         self.state_size = state_size
         self.action_size = action_size
         self.memory = deque(maxlen=2000) # Experience Replay Buffer
