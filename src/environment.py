@@ -1,15 +1,17 @@
 import numpy as np
 
 class CompetitiveMarketEnv:
-    def __init__(self, cogs=50.0):
+    def __init__(self, cogs=50.0, inventory=500.0):
         self.cogs = cogs
+        self.initial_inventory = inventory # Store this for resets
         self.reset()
 
+        # Change Line 11 to this:
     def reset(self):
         self.our_price = 100.0
-        self.comp_price = 102.0 # Competitor starts near us
+        self.comp_price = 102.0
         self.step_count = 0
-        self.inventory = 500.0 # Starting inventory
+        self.inventory = self.initial_inventory # Use the custom value here
         # Return state with 5 features
         return np.array([self.our_price, self.comp_price, 5, 0, self.inventory], dtype=np.float32)
 

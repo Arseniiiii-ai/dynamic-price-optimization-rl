@@ -24,23 +24,27 @@ class DQNetwork(nn.Module):
         x = torch.relu(self.fc2(x))
         return self.fc3(x)
 
+        
+
 # --- DEEP Q-LEARNING AGENT ---
 class DQNAgent:
     def __init__(self, state_size=5, action_size=3):
         self.state_size = state_size
         self.action_size = action_size
-        self.memory = deque(maxlen=2000) # Experience Replay Buffer
+        self.memory = deque(maxlen=2000)
         
-        # Hyperparameters
-        self.gamma = 0.95            # Discount factor
-        self.epsilon = 1.0           # Exploration rate
+        # Hyperparameters - MAKE SURE THESE ALL HAVE 'self.'
+        self.gamma = 0.95            
+        self.epsilon = 1.0           
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995
-        self.learning_rate = 0.001
+        self.learning_rate = 0.001  
         self.batch_size = 32
         
-        # Networks
+        # Networks - Use 'self.model' to be consistent
         self.model = DQNetwork(state_size, action_size)
+        
+        # This line will work now because self.learning_rate exists!
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.learning_rate)
         self.criterion = nn.MSELoss()
 
