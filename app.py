@@ -5,15 +5,16 @@ import torch
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from src.environment import CompetitiveMarketEnv
-from src.agent import DQNAgent
+import os
+from src.environment import MarketEnv
+from src.agent import PPOAgent
 from src.data_loader import PricingDataLoader
 from src.feature_engineering import create_features
 
 # --- UI CONFIGURATION ---
 st.set_page_config(page_title="AI Pricing Dashboard", layout="wide")
 st.title("🤖 Dynamic Price Optimization Dashboard")
-st.markdown("### Phase 4: Real-Time Market Simulation")
+st.markdown("### Phase 4: Real-Time Market Simulation (Continuous PPO)")
 
 # --- SIDEBAR CONTROLS ---
 st.sidebar.header("Market Parameters")
@@ -23,44 +24,56 @@ competitor_aggression = st.sidebar.select_slider(
     options=["Passive", "Balanced", "Aggressive"]
 )
 
-# --- LOAD PHASE 3 BRAIN ---
+# --- LOAD CONTINUOUS PPO BRAIN ---
 @st.cache_resource
 def load_model():
-    # Make sure action_size matches your training (looks like it's 3 in your agent.py)
     state_size = 5 
-    action_size = 3 
-    agent = DQNAgent(state_size, action_size)
+    action_size = 1 
+    agent = PPOAgent(state_size, action_size)
     
-    # Use .model here
-    agent.model.load_state_dict(torch.load("models/dqn_model.pth"))
+    # Check if model exists, else just return untrained for now
+    if os.path.exists("models/ppo_model.pth"):
+        agent.model.load_state_dict(torch.load("models/ppo_model.pth"))
     return agent
 
 agent = load_model()
-st.success("✅ Phase 3 Model Loaded Successfully!")
+if os.path.exists("models/ppo_model.pth"):
+    st.success("✅ Continuous PPO Model Loaded Successfully!")
+else:
+    st.warning("⚠️ PPO Model not found. Running with untrained agent. Please run `python train.py` first.")
 
 # --- SIMULATION LOGIC ---
 results = []
 if st.button("▶️ Run Market Simulation"):
-    # This is the line you asked about, placed correctly within the button trigger
-    env = CompetitiveMarketEnv(inventory=initial_inventory) 
+    env = MarketEnv(inventory=initial_inventory) 
     
     state = env.reset()
-    
+    state = state / [100, 100, 12, 1, 500] 
 
     # Run a 30-day simulation
     for day in range(30):
-        # 1. Get action from the loaded AI agent
-        action = agent.get_action(state)
+        # 1. Get action from the loaded AI agent (Deterministic for inference)
+        # Use a single variable first to see what the agent is actually giving back
+        result = agent.get_action(state, deterministic=True)
+
+        # If the result is a tuple (action, log_prob), take the first part
+        if isinstance(result, tuple):
+            action = result[0]
+        else:
+            action = result
         
         # 2. Step the environment
         next_state, reward, done, _ = env.step(action)
         
-        # 3. Save data for plotting (Mapping state indices to names)
+        # Normalize next_state
+        next_state = next_state / [100, 100, 12, 1, 500]
+        
+        # 3. Save data for plotting
         results.append({
             "Day": day + 1,
-            "Price": state[0],
-            "Comp_Price": state[1],
-            "Inventory": state[4], # Check if inventory is index 3 or 4 in your env
+            "Price": env.our_price,
+            "Comp_Price": env.comp_price,
+            "Inventory": env.inventory, 
             "Profit": reward
         })
         state = next_state
