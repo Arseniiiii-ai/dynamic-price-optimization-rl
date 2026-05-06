@@ -133,16 +133,22 @@ Successfully transitioned the engine from a discrete action space to a continuou
 - [x] Strategy Explainability: "Policy Map" showing when the agent triggers price hikes
 - [x] Performance Metrics: Real-time tracking of Profit, Revenue, and Stock via Streamlit
 
-### 🟡 Phase 5: Production-Grade Optimization (Completed)
+### 🟢 Phase 5: Production-Grade Optimization (Completed)
 - [x] Continuous Action Space: DQN → PPO for cent-perfect pricing precision
 - [x] Price Elasticity Layer: Real-time demand sensitivity modeling in the neural network
 - [x] Market Latency Simulation: Training for real-world execution lag handling
 - [x] Multi-Objective Rewards: Strategy toggle between Market Share (GMV) and Profit Margin
 - [x] Advanced Stress Testing: Black Friday demand spikes and high-volatility scenarios
 
-### 🔵 Phase 6: Multi-Agent Intelligence & Elastic Scaling (Upcoming)
-> Details coming soon.
+### 🟡 Phase 6: Multi-Agent Intelligence & Elastic Scaling (In Progress)
 
+- [ ] Adversarial Self-Play: Implementing a training loop where the PPO agent competes against past versions of itself to discover advanced counter-pricing strategies.
+- [ ] Multi-Agent Ecosystem: Expanding the environment to support 5+ simultaneous AI agents (e.g., Aggressive, Conservative, and Trend-Following) to simulate a crowded marketplace.
+- [ ] Explainable AI (XAI) Integration: Adding a SHAP-based interpretability layer to the dashboard to visualize which features (inventory vs. competitor price) are driving the agent's decisions.
+- [ ] Market Regime Switching: Training the agent to detect and adapt to different macro-economic "regimes" (e.g., Inflationary, Recessionary, or Holiday Peaks) in real-time.
+- [ ] Dynamic Portfolio Optimization: Moving beyond single-product pricing to manage "Cannibalization" across multiple related SKUs to maximize total category revenue.
+
+### 🔵
 ---
 
 ## 👤 About the Author
