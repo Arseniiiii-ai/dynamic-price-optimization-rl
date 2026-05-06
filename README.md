@@ -148,7 +148,10 @@ Successfully transitioned the engine from a discrete action space to a continuou
 - [ ] Market Regime Switching: Training the agent to detect and adapt to different macro-economic "regimes" (e.g., Inflationary, Recessionary, or Holiday Peaks) in real-time.
 - [ ] Dynamic Portfolio Optimization: Moving beyond single-product pricing to manage "Cannibalization" across multiple related SKUs to maximize total category revenue.
 
-### 🔵
+### 🔵 Phase 7: Portfolio Orchestration & Global Autonomy (Upcoming)
+
+Soon!
+
 ---
 
 ## 👤 About the Author
